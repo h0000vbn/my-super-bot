@@ -1,4 +1,5 @@
-import asyncio
+import asyncio  
+from keep_alive import keep_alive
 import os
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
@@ -93,6 +94,9 @@ async def universal_downloader(message: types.Message):
             os.remove(filename)
 
 async def main():
+    keep_alive()  # <--- هاي هي الحيلة اشتغلت
+    print("البوت شغال حالياً..")
+    await dp.start_polling(bot)
     await bot.delete_webhook(drop_pending_updates=True)
     # تفعيل القائمة السفلية أول ما يشتغل البوت
     await set_bot_commands(bot)
