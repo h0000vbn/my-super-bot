@@ -83,12 +83,12 @@ async def universal_downloader(message: types.Message):
         else:
             await message.answer_document(document=types.FSInputFile(filename), caption=caption_text, reply_markup=get_vip_keyboard())
 
-        if filename and os.path.exists(filename):
-            os.remove(filename)
         await status_msg.delete()
 
     except Exception as e:
         await status_msg.edit_text(f"عذراً مهندس\nالرابط محمي أو به مشكلة، جرب رابط آخر.\n(راح يساعدك عمك ابو حنياب)")
+
+    finally:
         if filename and os.path.exists(filename):
             os.remove(filename)
 
